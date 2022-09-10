@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
 
-function App() {
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Switch,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+
+import { history } from "./helpers/history";
+
+import Navbar from "./components/Navbar/Navbar";
+
+import Home from "./Main";
+
+import "./App.css";
+
+import About from "./components/StaticHomePage/About";
+import Contact from "./components/StaticHomePage/Contact";
+import FindTrain from "./components/SearchTrain/FindTrain";
+import Signin from "./components/Auth/Signin";
+import Signup from "./components/Auth/Signup";
+import Profile from "./components/Auth/profile";
+import AuthContext from "./store/auth-context";
+import TrainList from "./components/SearchTrain/TrainList";
+
+const App = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter history={history}>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/find-train" element={<FindTrain />} />
+
+            {!authCtx.isLoggedIn && (
+              <Route path="/signin" element={<Signin />} />
+            )}
+            {!authCtx.isLoggedIn && (
+              <Route path="/signup" element={<Signup />} />
+            )}
+            {/* {authCtx.isLoggedIn && (
+              <Route path="/profile" element={<Profile />} />
+            )} */}
+            <Route
+              path="/profile"
+              element={
+                authCtx.isLoggedIn ? (
+                  <Profile />
+                ) : (
+                  <Navigate replace to={"/signin"} />
+                )
+              }
+            />
+
+            <Route path="/train-list" element={<TrainList />} />
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
