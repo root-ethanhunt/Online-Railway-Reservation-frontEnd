@@ -29,10 +29,6 @@ export default function TrainBooking() {
     ]);
 
     console.log(inputFields.length);
-    if (inputFields.length >= 6) {
-      setAddCheck("false");
-    }
-    setInputCheck("true");
   };
 
   const handleRemoveFields = (id) => {
@@ -41,10 +37,6 @@ export default function TrainBooking() {
       values.findIndex((value) => value.id === id),
       1
     );
-
-    if (inputFields.length === 1) {
-      setInputCheck("true");
-    }
 
     setInputFields(values);
   };
