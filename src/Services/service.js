@@ -7,9 +7,9 @@ class service {
     return httpClient.post("/auth/signin", data);
   }
 
-  getTrains(from, to, token) {
-    return httpClient.get(`users/getByStaions/${from}/${to}`, {
-      headers: { Authorization: `Bearer ${token}` },
+  getTrains(from, to) {
+    return httpClient.get(`/trainSearch/getTrainByStations/${from}/${to}`, {
+      // headers: { Authorization: `Bearer ${token}` },
     });
   }
 }

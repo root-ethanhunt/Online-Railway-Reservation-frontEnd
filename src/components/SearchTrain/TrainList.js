@@ -1,53 +1,97 @@
-import _ from "lodash";
-import React, { Component, createRef } from "react";
-import {
-  Grid,
-  Header,
-  Image,
-  Rail,
-  Ref,
-  Segment,
-  Sticky,
-} from "semantic-ui-react";
+import "./TrainList.css";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const Placeholder = () => (
-  <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
-);
+import service from "../../Services/Train";
+import TrainDataCard from "./TrainData/TrainDataCard";
 
-export default class StickyExampleAdjacentContext extends Component {
-  contextRef = createRef();
+import React from "react";
+import { Grid, Image, Segment } from "semantic-ui-react";
 
-  render() {
-    return (
-      <Grid centered columns={3}>
-        <Grid.Column>
-          <Ref innerRef={this.contextRef}>
-            <Segment>
-              {_.times(10, (i) => (
-                <Placeholder key={i} />
-              ))}
+const TrainList = (props) => {
+  const [isData, setIsData] = useState([]);
+  const location = useLocation();
 
-              <Rail position="left">
-                {_.times(3, (i) => (
-                  <Placeholder key={i} />
-                ))}
+  //   const to = props.items.to;
+  const data = location.state;
 
-                <Sticky context={this.contextRef}>
-                  <Header as="h3">Stuck Content</Header>
-                  <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                </Sticky>
-              </Rail>
+  const trainRun = () => {
+    service
+      .getTrains(data.from, data.to)
+      .then((res) => {
+        // console.log(res.data);
+        setIsData(res.data);
+        //   setIsLoading(false);
+        if (res.status === 200) {
+          // console.log(res.data.accessToken);
+          // console.log(res.status);
+          return res.data;
+        } else {
+          return res.data.then((data) => {
+            // console.log(data);
+            let errorMessage = "Authentication failed!";
+            // if (data && data.error && data.error.message) {
+            //   errorMessage = data.error.message;
+            // }
 
-              <Rail position="right">
-                <Sticky context={this.contextRef}>
-                  <Header as="h3">Stuck Content</Header>
-                  <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                </Sticky>
-              </Rail>
-            </Segment>
-          </Ref>
-        </Grid.Column>
-      </Grid>
-    );
-  }
-}
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        //   authCtx.login(data.token);
+        //   history("/", { replace: true });
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  useEffect(() => {
+    trainRun();
+  }, []);
+
+  //   console.log(isData.at(0).train_id);
+  return (
+    /* {data && (
+        <div>
+          <h3>Passed data:</h3>
+          <p>to: {data.to}</p>
+          <p>from: {data.from}</p>
+          <p>date: {data.dates}</p>
+          <p>class: {data.classes}</p>
+          <p>category: {data.category}</p>
+        </div>
+      )} */
+    <div>
+      <div class="ui segment ">
+        <h2 class="ui  header">
+          <div class="ui segment">
+            {data && (
+              <div>
+                <p className="p1">
+                  {data.from.toUpperCase()}
+                  <p className="p1"> </p>
+                  <i class="arrow right icon"></i>
+                </p>
+                <p className="p1"> {data.to.toUpperCase()} |</p>
+                <p className="p1">date: {data.dates} |</p>
+                <p className="p1"> {data.classes} |</p>
+                <p className="p1"> {data.category} </p>
+              </div>
+            )}
+          </div>
+        </h2>
+        <div class="ui clearing divider"></div>
+        <div class="ui padded segment">
+          {isData.map((train) => (
+            <TrainDataCard trainData={train} />
+          ))}
+
+          {/* <div>{isData.at(0).train_id}</div> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+export default TrainList;

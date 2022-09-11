@@ -101,18 +101,21 @@ const Signup = () => {
             placeholder="username"
             required
             ref={usernameInputRef}
+            autoComplete="off"
           />
           <input
             type="email"
             placeholder="email"
             required
             ref={emailInputRef}
+            autoComplete="off"
           />
           <input
             type="password"
             placeholder="password"
             required
             ref={passwordInputRef}
+            autoComplete="off"
           />
           {!isLoading && <button>Sign Up</button>}
           {isLoading && <p>Sending request...</p>}
