@@ -28,13 +28,9 @@ const TrainList = (props) => {
           return res.data;
         } else {
           return res.data.then((data) => {
-            // console.log(data);
-            let errorMessage = "Authentication failed!";
-            // if (data && data.error && data.error.message) {
-            //   errorMessage = data.error.message;
-            // }
+           
 
-            throw new Error(errorMessage);
+            // throw new Error(errorMessage);
           });
         }
       })
