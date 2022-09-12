@@ -3,14 +3,14 @@ const TrainData = (props) => {
   return (
     //    <div>{props.trainData.train_id}</div>
     <div class="ui segment">
-      <div class="ui segment">
+      <div class="ui tertiary segment">
         <p className="p1">{props.trainData.train_name.toUpperCase()} |</p>
         <p className="p1">{props.trainData.train_id}</p>
       </div>
 
-      <div class="ui four column stackable grid">
-        <div class="column">
-          <div class="ui raised segment">
+      <div class="ui four column  stackable grid">
+        <div class="column ">
+          <div class="ui raised  segment">
             <div class="ui ">
               <div class=" header">
                 <div class="line">Sleeper (SL)</div>

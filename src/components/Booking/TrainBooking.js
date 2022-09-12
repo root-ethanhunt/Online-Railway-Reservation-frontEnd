@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TicketPrice } from "./TicketPrice";
 
 export default function TrainBooking() {
   const [inputFields, setInputFields] = useState([
@@ -63,7 +64,33 @@ export default function TrainBooking() {
           </div>
         </div>
       </div>
+      {/* {progress bar end} */}
 
+      <div class="ui segment  ">
+        <div class="ui segments">
+          <h1 class="ui left aligned tertiary segment">
+            train name (train number)
+          </h1>
+
+          <div>
+            <p>class</p>
+          </div>
+          <div class="ui secondary segment">
+            <div>
+              <p className="p1">
+                <p className="p1">PATNA</p>
+                <i class="arrow right icon"></i>
+              </p>
+              <p className="p1">KOLKATA</p>
+              <p className="p1">class</p>
+              <p className="p1">Quota</p>
+              <p className="p1">time</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* {passenger section and payment section start} */}
       <div class="ui internally celled grid">
         <div class="row">
           <div class="twelve wide column">
@@ -84,7 +111,7 @@ export default function TrainBooking() {
 
               {inputFields.map((inputField) => (
                 <div key={inputField.id}>
-                  <div class="ui form segment">
+                  <div class="ui form  segment">
                     <div class="five fields">
                       <div class="field">
                         <input
@@ -145,24 +172,43 @@ export default function TrainBooking() {
                 </div>
               ))}
 
-              <button
+              {/* <button
                 class="ui button"
                 onClick={handleSubmit}
                 disabled={inputFields.length < 1 ? true : false}
                 style={{ marginTop: "1%" }}
               >
                 submit
+              </button> */}
+
+              {/* submit or back button start */}
+              <button class="ui labeled icon button">
+                <i class="left arrow icon"></i>
+                Back
               </button>
+              <button
+                onClick={handleSubmit}
+                disabled={inputFields.length < 1 ? true : false}
+                style={{ marginTop: "1%" }}
+                class="ui right labeled icon button"
+              >
+                <i class="right arrow icon"></i>
+                Continue
+              </button>
+              {/* submit or back button end */}
               {/* add Passenger details */}
             </div>
           </div>
           <div class="four wide column">
-            <div class="ui compact segment">
-              <p>for Payment</p>
+            <div class="ui segment">
+              <TicketPrice />
             </div>
           </div>
         </div>
       </div>
+      {/* user detail start*/}
+
+      <div class="ui segment"></div>
     </div>
   );
 }

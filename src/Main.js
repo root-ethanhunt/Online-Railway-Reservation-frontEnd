@@ -4,6 +4,7 @@ import Card from "./components/StaticHomePage/Card";
 import Services from "./components/StaticHomePage/Services";
 import ImageSlider from "./components/Navbar/ImageSlider";
 import { Outlet, Link } from "react-router-dom";
+import { Footer } from "./components/StaticHomePage/Footer";
 
 import "./App.css";
 import img1 from "./assets/t5.jpg";
@@ -39,6 +40,7 @@ const Main = () => {
       <SearchTrain className="cont"></SearchTrain>
       <Card></Card>
       <Services></Services>
+      {/* <Footer /> */}
     </div>
   );
 };

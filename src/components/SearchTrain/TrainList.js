@@ -28,8 +28,6 @@ const TrainList = (props) => {
           return res.data;
         } else {
           return res.data.then((data) => {
-           
-
             // throw new Error(errorMessage);
           });
         }
@@ -62,7 +60,7 @@ const TrainList = (props) => {
     <div>
       <div class="ui segment ">
         <h2 class="ui  header">
-          <div class="ui segment">
+          <div class="ui tertiary segment">
             {data && (
               <div>
                 <p className="p1">

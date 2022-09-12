@@ -20,20 +20,68 @@ const Navbar = () => {
     <div>
       <div class="ui blue inverted segment" style={{ margin: "0" }}>
         <div class="ui  secondary  menu">
-          <Link to="/">{<a class="active item">Home</a>}</Link>
-          <Link to="/">{<a class="item">Book Ticket</a>}</Link>
-          <Link to="/about">{<a class="item">About Us</a>}</Link>
-          <Link to="/find-train">{<a class="item">Search Train</a>}</Link>
-          <Link to="/contact">{<a class="item">Contact Us</a>}</Link>
+          <Link to="/">
+            {
+              <a class="active item">
+                <h4>Home</h4>
+              </a>
+            }
+          </Link>
+          <Link to="/">
+            {
+              <a class="item">
+                <h4>Book Ticket</h4>
+              </a>
+            }
+          </Link>
+          <Link to="/about">
+            {
+              <a class="item">
+                <h4>About Us</h4>
+              </a>
+            }
+          </Link>
+          <Link to="/find-train">
+            {
+              <a class="item">
+                <h4>Search Train</h4>
+              </a>
+            }
+          </Link>
+          <Link to="/contact">
+            {
+              <a class="item">
+                <h4>Contact Us</h4>
+              </a>
+            }
+          </Link>
           <div class="right menu">
             {isLoggedIn && (
-              <Link to="/profile">{<a class="ui item">Profile</a>}</Link>
+              <Link to="/profile">
+                {
+                  <a class="ui item">
+                    <h4>Profile</h4>
+                  </a>
+                }
+              </Link>
             )}
             {!isLoggedIn && (
-              <Link to="/signin">{<a class="ui item">Sign in</a>}</Link>
+              <Link to="/signin">
+                {
+                  <a class="ui item">
+                    <h4>Sign in</h4>
+                  </a>
+                }
+              </Link>
             )}
             {!isLoggedIn && (
-              <Link to="/signup">{<a class="ui item">Sign up</a>}</Link>
+              <Link to="/signup">
+                {
+                  <a class="ui item">
+                    <h4>Sign up</h4>
+                  </a>
+                }
+              </Link>
             )}
             {isLoggedIn && (
               <div>
