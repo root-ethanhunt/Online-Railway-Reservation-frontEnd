@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 export const Footer = (props) => {
   return (
     <footer>
-      <div class="page-wrapper">
+      <div className="page-wrapper">
         <div id="waterdrop"></div>
         <footer>
-          <div class="footer-top">
+          <div className="footer-top">
             <table>
               <tr>
                 <td align="center">
-                  <p  style={{float: "center"}}>
+                  <p style={{ float: "center" }}>
                     {" "}
                     &nbsp
                     <a href="home.php">Home</a>|

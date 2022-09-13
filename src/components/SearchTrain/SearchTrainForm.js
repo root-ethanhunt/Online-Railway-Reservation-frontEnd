@@ -132,9 +132,9 @@ const SearchTrainForm = (props) => {
             <select className="ui search dropdown" onChange={handleClassChange}>
               <option value="All classes">All classes</option>
               <option value="SL">Sleeper (SL)</option>
-              <option value="1A">AC First Class (1A)</option>
-              <option value="2A">AC First Class (2A)</option>
-              <option value="3A">AC First Class (3A)</option>
+              <option value="1A">AC First className (1A)</option>
+              <option value="2A">AC First className (2A)</option>
+              <option value="3A">AC First className (3A)</option>
             </select>
           </div>
         </div>
@@ -156,7 +156,7 @@ const SearchTrainForm = (props) => {
         </div>
         <button className="ui toggle button" onClick={handleClick}>
           <Link to="/train-list" state={trainSearchData}>
-            {<a class="active item">Search</a>}
+            {<a className="active item">Search</a>}
           </Link>
         </button>
       </div>

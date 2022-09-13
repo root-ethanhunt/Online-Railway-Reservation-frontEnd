@@ -5,5 +5,9 @@ class trainService {
       // headers: { Authorization: `Bearer ${token}` },
     });
   }
+
+  getTrainById(id) {
+    return httpClient.get(`/trainSearch/getTrainById/${id}`);
+  }
 }
 export default new trainService();

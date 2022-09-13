@@ -53,21 +53,23 @@ const TrainList = (props) => {
           <p>to: {data.to}</p>
           <p>from: {data.from}</p>
           <p>date: {data.dates}</p>
-          <p>class: {data.classes}</p>
+          <p>className: {data.classes}</p>
           <p>category: {data.category}</p>
         </div>
       )} */
     <div>
-      <div class="ui segment ">
-        <h2 class="ui  header">
-          <div class="ui tertiary segment">
+      <div className="ui segment ">
+        <h2 className="ui  header">
+          <div className="ui tertiary segment">
             {data && (
               <div>
-                <p className="p1">
-                  {data.from.toUpperCase()}
-                  <p className="p1"> </p>
-                  <i class="arrow right icon"></i>
-                </p>
+                <div className="p1">
+                  <p className="p1">{data.from.toUpperCase()}</p>
+
+                  <p className="p1">
+                    <i className="arrow right icon"></i>
+                  </p>
+                </div>
                 <p className="p1"> {data.to.toUpperCase()} |</p>
                 <p className="p1">date: {data.dates} |</p>
                 <p className="p1"> {data.classes} |</p>
@@ -76,10 +78,10 @@ const TrainList = (props) => {
             )}
           </div>
         </h2>
-        <div class="ui clearing divider"></div>
-        <div class="ui padded segment">
-          {isData.map((train) => (
-            <TrainDataCard trainData={train} />
+        <div className="ui clearing divider"></div>
+        <div className="ui padded segment">
+          {isData.map((train, i) => (
+            <TrainDataCard trainData={train} key={i} />
           ))}
 
           {/* <div>{isData.at(0).train_id}</div> */}

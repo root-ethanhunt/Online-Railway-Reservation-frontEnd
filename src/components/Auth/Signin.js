@@ -71,9 +71,9 @@ const Signin = (props) => {
   }, [token]);
 
   return (
-    <div class="login-page">
-      <div class="form1">
-        <form class="login-form1" onSubmit={submitHandler}>
+    <div className="login-page">
+      <div className="form1">
+        <form className="login-form1" onSubmit={submitHandler}>
           <input
             type="text"
             placeholder="username"
@@ -94,7 +94,7 @@ const Signin = (props) => {
           />
           {!isLoading && <button>Sign In</button>}
           {isLoading && <p>Sending request...</p>}
-          <p class="message">
+          <p className="message">
             Not registered? <a href="#">Create an account</a>
           </p>
         </form>

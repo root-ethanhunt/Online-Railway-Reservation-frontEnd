@@ -18,75 +18,75 @@ const Navbar = () => {
 
   return (
     <div>
-      <div class="ui blue inverted segment" style={{ margin: "0" }}>
-        <div class="ui  secondary  menu">
-          <Link to="/">
-            {
-              <a class="active item">
-                <h4>Home</h4>
-              </a>
-            }
+      <div className="ui blue inverted segment" style={{ margin: "0" }}>
+        <div className="ui  secondary  menu">
+          <Link className="active item" to="/">
+            {/* {
+              <a className="active item"> */}
+            <h4>Home</h4>
+            {/* </a>
+            } */}
           </Link>
-          <Link to="/">
-            {
-              <a class="item">
-                <h4>Book Ticket</h4>
-              </a>
-            }
+          <Link className="item" to="/">
+            {/* {
+              <a className="item"> */}
+            <h4>Book Ticket</h4>
+            {/* </a>
+            } */}
           </Link>
-          <Link to="/about">
-            {
-              <a class="item">
-                <h4>About Us</h4>
-              </a>
-            }
+          <Link className="item" to="/about">
+            {/* {
+              <a className="item"> */}
+            <h4>About Us</h4>
+            {/* </a>
+            } */}
           </Link>
-          <Link to="/find-train">
-            {
-              <a class="item">
-                <h4>Search Train</h4>
-              </a>
-            }
+          <Link className="item" to="/find-train">
+            {/* {
+              <a className="item"> */}
+            <h4>Search Train</h4>
+            {/* </a>
+            } */}
           </Link>
-          <Link to="/contact">
-            {
-              <a class="item">
-                <h4>Contact Us</h4>
-              </a>
-            }
+          <Link className="item" to="/contact">
+            {/* {
+              <a className="item"> */}
+            <h4>Contact Us</h4>
+            {/* </a>
+            } */}
           </Link>
-          <div class="right menu">
+          <div className="right menu">
             {isLoggedIn && (
-              <Link to="/profile">
-                {
-                  <a class="ui item">
-                    <h4>Profile</h4>
-                  </a>
-                }
+              <Link className="item" to="/profile">
+                {/* {
+                  <a className="ui item"> */}
+                <h4>Profile</h4>
+                {/* </a>
+                } */}
               </Link>
             )}
             {!isLoggedIn && (
-              <Link to="/signin">
-                {
-                  <a class="ui item">
-                    <h4>Sign in</h4>
-                  </a>
-                }
+              <Link className=" ui item" to="/signin">
+                {/* {
+                  <a className="ui item"> */}
+                <h4>Sign in</h4>
+                {/* </a>
+                } */}
               </Link>
             )}
             {!isLoggedIn && (
-              <Link to="/signup">
-                {
-                  <a class="ui item">
-                    <h4>Sign up</h4>
-                  </a>
-                }
+              <Link className="ui item" to="/signup">
+                {/* {
+                  <a className="ui item"> */}
+                <h4>Sign up</h4>
+                {/* </a>
+                } */}
               </Link>
             )}
             {isLoggedIn && (
               <div>
-                <a class="ui item" onClick={logoutHandler}>
-                  Logout
+                <a className="ui item" onClick={logoutHandler}>
+                  <h4>Logout</h4>
                 </a>
               </div>
             )}

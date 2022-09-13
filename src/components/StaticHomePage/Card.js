@@ -13,12 +13,12 @@ const Card = () => {
         Some Scenic Train Routes !
       </h1>
       <br />
-      <div class="box">
-        <div class="card">
-          <div class="imgBx">
+      <div className="box">
+        <div className="card">
+          <div className="imgBx">
             <img src={img1} alt="images" />
           </div>
-          <div class="details">
+          <div className="details">
             <h2>
               Himalayan Queen
               <br />
@@ -27,11 +27,11 @@ const Card = () => {
           </div>
         </div>
 
-        <div class="card">
-          <div class="imgBx">
+        <div className="card">
+          <div className="imgBx">
             <img src={img2} alt="images" />
           </div>
-          <div class="details">
+          <div className="details">
             <h2>
               Palace on Wheels
               <br />
@@ -40,11 +40,11 @@ const Card = () => {
           </div>
         </div>
 
-        <div class="card">
-          <div class="imgBx">
+        <div className="card">
+          <div className="imgBx">
             <img src={img3} alt="images" />
           </div>
-          <div class="details">
+          <div className="details">
             <h2>
               Dudhsagar Falls
               <br />

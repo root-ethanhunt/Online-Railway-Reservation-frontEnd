@@ -7,24 +7,24 @@ const NewSearchTrain = (props) => {
     <div className="new-expense">
       <p />
 
-      <div class="ui segment ">
+      <div className="ui segment ">
         <div
-          class="ui two column very relaxed grid"
+          className="ui two column very relaxed grid"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <div class="column">
+          <div className="column">
             <PnrSearch></PnrSearch>
           </div>
 
-          <div class="column">
+          <div className="column">
             <SearchTrainForm></SearchTrainForm>
           </div>
         </div>
-        <div class="ui vertical divider"></div>
+        <div className="ui vertical divider"></div>
       </div>
     </div>
   );
