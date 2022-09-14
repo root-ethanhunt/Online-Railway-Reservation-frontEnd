@@ -1,19 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TicketPrice } from "./TicketPrice";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 import service from "../../Services/Train";
 
 export default function TrainBooking() {
+  const history = useNavigate();
   const [inputFields, setInputFields] = useState([
     { id: uuidv4(), name: "", age: "", gender: "", seatNo: "" },
   ]);
 
+  const [isData, setIsData] = useState({});
+
   const location = useLocation();
   const data = location.state;
 
+  const trainRun = () => {
+    service
+      .getTrainById(data.train_no)
+      .then((res) => {
+        console.log(res.data);
+        setIsData(res.data);
+
+        if (res.status === 200) {
+          return res.data;
+        } else {
+          return res.data.then((data) => {});
+        }
+      })
+      .then((data) => {})
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   useEffect(() => {
+    trainRun();
     console.log(data.train_class);
     console.log(data.train_no);
   }, []);
@@ -25,7 +48,7 @@ export default function TrainBooking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("InputFields", inputFields);
+    console.log("InputFields", inputFields);
   };
 
   const handleChangeInput = (id, event) => {
@@ -85,20 +108,22 @@ export default function TrainBooking() {
       <div className="ui segment  ">
         <div className="ui segments">
           <h1 className="ui left aligned tertiary segment">
-            train name {data.train_no}
+            {(isData.train_name || " ").toUpperCase()} ( {data.train_no})
           </h1>
 
           <div>
-            <p>className</p>
+            <p>CLASS : {data.train_class}</p>
           </div>
           <div className="ui secondary segment">
             <div>
               <p className="p1">
-                <p className="p1">PATNA</p>
+                <p className="p1">
+                  {(isData.from_station || " ").toUpperCase()}
+                </p>
                 <i className="arrow right icon"></i>
               </p>
-              <p className="p1">KOLKATA</p>
-              <p className="p1">className</p>
+              <p className="p1">{(isData.to_station || "").toUpperCase()} |</p>
+              <p className="p1">{data.train_class}</p>
               <p className="p1">Quota</p>
               <p className="p1">time</p>
             </div>
@@ -198,10 +223,14 @@ export default function TrainBooking() {
               </button> */}
 
               {/* submit or back button start */}
-              <button className="ui labeled icon button">
+              <button
+                onClick={() => history(-1)}
+                className="ui labeled icon button"
+              >
                 <i className="left arrow icon"></i>
                 Back
               </button>
+
               <button
                 onClick={handleSubmit}
                 disabled={inputFields.length < 1 ? true : false}
@@ -209,8 +238,11 @@ export default function TrainBooking() {
                 className="ui right labeled icon button"
               >
                 <i className="right arrow icon"></i>
-                Continue
+                <Link to="/train-review" style={{ color: "grey" }} state={1}>
+                  Continue
+                </Link>
               </button>
+
               {/* submit or back button end */}
               {/* add Passenger details */}
             </div>

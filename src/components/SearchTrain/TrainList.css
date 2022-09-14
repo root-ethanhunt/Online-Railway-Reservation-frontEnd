@@ -61,19 +61,15 @@ body {
   float: left;
   width: 50%;
   padding: 10px;
-  background-color:#aaa;
+  background-color: #aaa;
   width: 100%;
 }
 
-.container{
+.container {
   box-sizing: border-box;
 }
 
-
-
-
 .list .card {
- 
   width: 500px;
   display: -ms-flexbox;
   display: flex;
@@ -90,8 +86,8 @@ body {
 }
 
 .cardDeck.grid {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 /* .list .card {
@@ -105,67 +101,52 @@ body {
     width: 300px;
 }
  */
- .title {
-    font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-weight: 400;
-    font-size: 20px;
-    margin: 4px 0px 8px 0;
-    padding: 0;
-    display: block;
-    box-sizing: border-box;
-
+.title {
+  font-family: -apple-system, "Helvetica Neue", "Helvetica", "Arial",
+    "Lucida Grande", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 4px 0px 8px 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
 }
- .title {
-  margin-bottom: auto; 
+.title {
+  margin-bottom: auto;
 }
 
-
- .card__content {
+.card__content {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-  flex-direction: column;  
+  flex-direction: column;
   margin-left: 10px;
 }
 
- .card__content footer {
+.card__content footer {
   margin-top: auto;
 }
 
- .card__content {
+.card__content {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-  flex-direction: column;  
+  flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-p{
-  padding:5px;
-            /* border:1px solid black; */
-            color:rgb(0, 107, 128);
-            font-size:24px;
+p {
+  padding: 5px;
+  /* border:1px solid black; */
+  color: rgb(0, 107, 128);
+  font-size: 20px;
 }
 
-.p1{
-  display:inline;
+.p1 {
+  display: inline;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

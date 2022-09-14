@@ -1,5 +1,4 @@
 .App {
-  
   text-align: center;
   /* position: relative;
   margin: 0 auto;  */
@@ -40,9 +39,7 @@
   }
 }
 
-
-
-.container .btn{
+.container .btn {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -56,10 +53,8 @@
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
-
 }
 
 .container .btn:hover {
   background-color: black;
 }
-

@@ -31,6 +31,7 @@ const SearchTrainForm = (props) => {
   };
 
   const handleToChange = (event) => {
+    // console.log(event.target.value);
     setToMessage(event.target.value);
   };
 
