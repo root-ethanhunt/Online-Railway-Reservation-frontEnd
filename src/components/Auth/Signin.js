@@ -39,7 +39,7 @@ const Signin = (props) => {
     service
       .getToken(User)
       .then((res) => {
-        // console.log(res.data);
+        // console.log(res.data.accessToken);
         setIsLoading(false);
         if (res.status === 200) {
           // console.log(res.data.accessToken);
@@ -59,6 +59,7 @@ const Signin = (props) => {
       })
       .then((data) => {
         authCtx.login(data.accessToken);
+        authCtx.userIdData(data.id);
         history("/", { replace: true });
       })
       .catch((err) => {

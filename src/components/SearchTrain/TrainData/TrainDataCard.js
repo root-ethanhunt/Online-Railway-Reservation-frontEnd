@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import TrainStore from "../../../store/trainStore-context";
 
 const TrainData = (props) => {
   const history = useNavigate();
@@ -11,6 +12,8 @@ const TrainData = (props) => {
   const [classClickA2, setClassClickA2] = useState(false);
   const [classClickA1, setClassClickA1] = useState(false);
   const [classClick, setClassClick] = useState(true);
+
+  const TrainCtx = useContext(TrainStore);
 
   const handleClick = (data, e) => {
     e.preventDefault();
@@ -78,6 +81,9 @@ const TrainData = (props) => {
     train_no: trainNoData,
   };
 
+  TrainCtx.train_class(classData);
+  TrainCtx.train_no(trainNoData);
+
   //console.log({ classData, trainNoData });
 
   const addStyleSL = classClickSL
@@ -99,6 +105,7 @@ const TrainData = (props) => {
       <div className="ui tertiary segment">
         <p className="p1">{props.trainData.train_name.toUpperCase()} |</p>
         <p className="p1">{props.trainData.train_id}</p>
+        <h5>Distance: {props.trainData.distance}</h5>
       </div>
 
       <div className="ui four column  stackable grid">
@@ -111,11 +118,14 @@ const TrainData = (props) => {
           <div className={addStyleSL}>
             <div className="ui ">
               <div className=" header">
-                <div className="line">Sleeper (SL)</div>
+                <div className="line">
+                  <h3>Sleeper (SL)</h3>
+                </div>
               </div>
               <div className="paragraph">
                 <div className="medium line">
-                  {props.trainData.total_Seat_sleeper}
+                  <h4>Seats Available:{props.trainData.total_Seat_sleeper}</h4>
+                  <h4>Price: {props.trainData.price_sleeper}</h4>
                 </div>
               </div>
             </div>
@@ -130,11 +140,16 @@ const TrainData = (props) => {
           <div className={addStyleA3}>
             <div className="ui ">
               <div className=" header">
-                <div className="line">AC 3 Tier (3A)</div>
+                <div className="line">
+                  {" "}
+                  <h3>AC 3 Tier (3A)</h3>
+                </div>
               </div>
               <div className="paragraph">
                 <div className="medium line">
-                  {props.trainData.total_Seat_ac3}
+                  <h4>Seats Available:{props.trainData.total_Seat_ac3}</h4>
+
+                  <h4>Price: {props.trainData.price_ac3}</h4>
                 </div>
               </div>
             </div>
@@ -149,11 +164,16 @@ const TrainData = (props) => {
           <div className={addStyleA2}>
             <div className="ui ">
               <div className=" header">
-                <div className="line">AC 2 Tier (2A)</div>
+                <div className="line">
+                  {" "}
+                  <h3>AC 2 Tier (2A)</h3>
+                </div>
               </div>
               <div className="paragraph">
                 <div className="medium line">
-                  {props.trainData.total_Seat_ac2}
+                  <h4>Seats Available:{props.trainData.total_Seat_ac2}</h4>
+
+                  <h4>Price: {props.trainData.price_ac2}</h4>
                 </div>
               </div>
             </div>
@@ -168,11 +188,16 @@ const TrainData = (props) => {
           <div className={addStyleA1}>
             <div className="ui ">
               <div className=" header">
-                <div className="line">AC 1 Tier (1A)</div>
+                <div className="line">
+                  {" "}
+                  <h3>AC 1 Tier (1A)</h3>
+                </div>
               </div>
               <div className="paragraph">
                 <div className="medium line">
-                  {props.trainData.total_Seat_ac1}
+                  <h4>Seats Available:{props.trainData.total_Seat_ac1}</h4>
+
+                  <h4>Price: {props.trainData.price_ac1}</h4>
                 </div>
               </div>
             </div>

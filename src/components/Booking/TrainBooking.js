@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TicketPrice } from "./TicketPrice";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import TrainStore from "../../store/trainStore-context";
+import { Formik, Field, Form, useFormik } from "formik";
 
 import service from "../../Services/Train";
 
 export default function TrainBooking() {
+  let price;
   const history = useNavigate();
   const [inputFields, setInputFields] = useState([
-    { id: uuidv4(), name: "", age: "", gender: "", seatNo: "" },
+    { id: uuidv4(), name: "", age: "", gender: "", seatNo: 0 },
   ]);
+  const trainCtx = useContext(TrainStore);
 
   const [isData, setIsData] = useState({});
 
   const location = useLocation();
   const data = location.state;
 
+  // console.log(trainCtx.train_data);
+
   const trainRun = () => {
     service
       .getTrainById(data.train_no)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setIsData(res.data);
 
         if (res.status === 200) {
@@ -37,14 +43,31 @@ export default function TrainBooking() {
 
   useEffect(() => {
     trainRun();
-    console.log(data.train_class);
-    console.log(data.train_no);
+    // console.log(data.train_class);
+    // console.log(data.train_no);
   }, []);
+
+  if (data.train_class === "SL") {
+    price = isData.price_sleeper;
+  }
+
+  if (data.train_class === "3A") {
+    price = isData.price_ac3;
+  }
+
+  if (data.train_class === "2A") {
+    price = isData.price_ac2;
+  }
+
+  if (data.train_class === "1A") {
+    price = isData.price_ac1;
+  }
+  console.log(price);
 
   //   const to = props.items.to;
 
-  console.log(data.train_class);
-  console.log(data.train_no);
+  // console.log(data.train_class);
+  // console.log(data.train_no);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +88,7 @@ export default function TrainBooking() {
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { id: uuidv4(), name: "", age: "", gender: "", seatNo: "" },
+      { id: uuidv4(), name: "", age: "", gender: "", seatNo: 0 },
     ]);
 
     // console.log(inputFields.length);
@@ -79,6 +102,12 @@ export default function TrainBooking() {
     );
 
     setInputFields(values);
+  };
+
+  const TrainBookingReview = {
+    trainData: isData,
+
+    passengerDetail: inputFields,
   };
 
   return (
@@ -177,7 +206,8 @@ export default function TrainBooking() {
                         />
                       </div>
                       <div className="ui selection  ">
-                        <input
+                        <select
+                          class="ui fluid dropdown"
                           type="text"
                           placeholder="Gender"
                           name="gender"
@@ -185,13 +215,26 @@ export default function TrainBooking() {
                             handleChangeInput(inputField.id, event)
                           }
                           value={inputField.gender}
-                        />
+                        >
+                          <option value="">Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                        {/* <input
+                          type="text"
+                          placeholder="Gender"
+                          name="gender"
+                          onChange={(event) =>
+                            handleChangeInput(inputField.id, event)
+                          }
+                          value={inputField.gender}
+                        /> */}
                       </div>
                       <div className="field">
                         <input
                           type="text"
                           placeholder="Seat No."
-                          name="seat"
+                          name="seatNo"
                           onChange={(event) =>
                             handleChangeInput(inputField.id, event)
                           }
@@ -238,7 +281,11 @@ export default function TrainBooking() {
                 className="ui right labeled icon button"
               >
                 <i className="right arrow icon"></i>
-                <Link to="/train-review" style={{ color: "grey" }} state={1}>
+                <Link
+                  to="/train-review"
+                  style={{ color: "grey" }}
+                  state={TrainBookingReview}
+                >
                   Continue
                 </Link>
               </button>
@@ -249,7 +296,7 @@ export default function TrainBooking() {
           </div>
           <div className="four wide column">
             <div className="ui segment">
-              <TicketPrice />
+              <TicketPrice priceData={price} />
             </div>
           </div>
         </div>

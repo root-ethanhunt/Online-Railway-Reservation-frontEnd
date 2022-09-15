@@ -9,11 +9,11 @@ export const TicketPrice = (props) => {
           <h2>Fare Summary</h2>
         </div>
         <div className="ui left aligned segment">
-          <h4>Ticket Fare :</h4>
+          <h4>Ticket Fare : {props.priceData}</h4>
         </div>
 
         <div className="ui left aligned inverted blue segment">
-          <h3>Total Fare :</h3>
+          <h3>Total Fare : {props.priceData}</h3>
         </div>
       </div>
     </div>
