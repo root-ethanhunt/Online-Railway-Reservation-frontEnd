@@ -33,7 +33,7 @@ const retrieveStoredToken = () => {
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState({});
 
   const userIsLoggedIn = !!token;
 

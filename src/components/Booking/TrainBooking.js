@@ -106,7 +106,8 @@ export default function TrainBooking() {
 
   const TrainBookingReview = {
     trainData: isData,
-
+    train_class: data.train_class,
+    price: price,
     passengerDetail: inputFields,
   };
 

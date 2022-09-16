@@ -2,14 +2,6 @@ function PassengerCard(props) {
   return (
     <div>
       <table class="ui four column table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Seat No.</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
             <td class="collapsing">
