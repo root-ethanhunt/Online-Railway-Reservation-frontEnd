@@ -13,6 +13,10 @@ export default function TrainBooking() {
   const [inputFields, setInputFields] = useState([
     { id: uuidv4(), name: "", age: "", gender: "", seatNo: 0 },
   ]);
+
+  // const [nameCheck, setNameCheck] = useState("false");
+  // const [errorMsg, setErrorMsg] = useState("false");
+
   const trainCtx = useContext(TrainStore);
 
   const [isData, setIsData] = useState({});
@@ -71,6 +75,7 @@ export default function TrainBooking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log("InputFields", inputFields);
   };
 
@@ -86,6 +91,7 @@ export default function TrainBooking() {
   };
 
   const handleAddFields = () => {
+    // setNameCheck(true);
     setInputFields([
       ...inputFields,
       { id: uuidv4(), name: "", age: "", gender: "", seatNo: 0 },

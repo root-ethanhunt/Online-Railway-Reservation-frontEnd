@@ -1,7 +1,7 @@
 import httpClient from "../http-common_booking";
 class bookingService {
-  createBooking(data) {
-    return httpClient.post("/Booking-details/addBooking-details/", data);
+  getBooking(id) {
+    return httpClient.get(`/Booking/allBookingsWithOfUsers/${id}`);
   }
 
   createBooking1(data) {

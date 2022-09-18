@@ -44,9 +44,9 @@ export const Review = (props) => {
 
     const bookingData = {
       bookingDetails: {
-        id: data.trainData.train_id.toString(),
-        pnr: Date.now().toString(),
+        pnr: pnr,
         train_no: data.trainData.train_id,
+        train_name: data.trainData.train_name,
         from_station: data.trainData.from_station,
         to_station: data.trainData.to_station,
         clas: data.train_class,
@@ -59,11 +59,13 @@ export const Review = (props) => {
       passengerList: passList,
 
       user: {
-        username: "vikash1",
-        password: "12345678",
-        email: "vik@gmail.com",
+        username: authCtx.userId.username,
+
+        email: authCtx.userId.email,
       },
       price: data.price.toString(),
+      userId: authCtx.userId.id,
+      pnr: pnr,
       status: "conform",
     };
 
