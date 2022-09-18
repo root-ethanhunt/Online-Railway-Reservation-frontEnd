@@ -4,6 +4,10 @@ class bookingService {
     return httpClient.get(`/Booking/allBookingsWithOfUsers/${id}`);
   }
 
+  getPnr(pnr) {
+    return httpClient.get(`/Booking/showTicket/${pnr}`);
+  }
+
   createBooking1(data) {
     return httpClient.post("/Booking/addBooking/", data);
   }

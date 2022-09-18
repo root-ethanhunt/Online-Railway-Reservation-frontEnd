@@ -5,13 +5,40 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import PassengerCard from "./passengerCard";
 import service from "../../Services/booking";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import { v4 as uuidv4 } from "uuid";
+import "./Success.css";
+import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
+import { display } from "@mui/system";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const Review = (props) => {
   const history = useNavigate();
 
   const location = useLocation();
   const data = location.state;
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const [successMessage, setSuccsessMessage] = useState(true);
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setState({ ...state, open: false });
+  };
 
   console.log(data);
   const authCtx = useContext(AuthContext);
@@ -75,6 +102,8 @@ export const Review = (props) => {
         console.log(res.data);
         console.log("success");
         if (res.status === 200) {
+          setState({ open: true, vertical: "top", horizontal: "right" });
+
           return res.data;
         } else {
           return res.data.then((data) => {
@@ -83,15 +112,52 @@ export const Review = (props) => {
         }
       })
       .then((data) => {
-        history("/", { replace: true });
+        // history("/", { replace: true });
+        setSuccsessMessage(false);
+        setState({ open: true, vertical: "top", horizontal: "right" });
       })
       .catch((err) => {
         alert(err.message);
       });
   };
 
+  const ShowNext = successMessage ? "none" : "block";
+
   return (
     <div>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical, horizontal }}
+        key={vertical + horizontal}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Booking Successfully....
+        </Alert>
+      </Snackbar>
+      {!successMessage && (
+        <div class="ui success message">
+          <div id="myModal" class="modal header" style={{ display: ShowNext }}>
+            <div class="modal-content">
+              <h2>
+                <i
+                  class="check circle outline icon"
+                  style={{ fontSize: "30px" }}
+                ></i>
+                Booking Conform....
+              </h2>
+              <h4>Thank You For choosing us...</h4>
+              <button
+                class="ui icon button"
+                onClick={() => history("/", { replace: true })}
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="ui three steps">
         <div className="completed step">
           <i className="user icon"></i>
