@@ -9,6 +9,7 @@ const AuthContext = React.createContext({
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
+  // role: "USER",
 });
 
 const calculationRemainingTime = (expirationTime) => {
@@ -33,6 +34,8 @@ const retrieveStoredToken = () => {
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
+  const initialAccess = localStorage.getItem("role");
+  const [role, setRole] = useState("USER");
   const [userId, setUserId] = useState({});
 
   const userIsLoggedIn = !!token;
@@ -40,7 +43,7 @@ export const AuthContextProvider = (props) => {
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
-
+    localStorage.removeItem("role");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }
@@ -49,6 +52,9 @@ export const AuthContextProvider = (props) => {
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem("token", token);
+    // localStorage.setItem("role", role);
+    // const value = userId.roles;
+    // console.log(value);
 
     const remainingTime = 3600 * 1000;
     logoutTimer = setTimeout(logoutHandler, remainingTime);
@@ -65,6 +71,7 @@ export const AuthContextProvider = (props) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    // role: userId.roles,
   };
 
   return (

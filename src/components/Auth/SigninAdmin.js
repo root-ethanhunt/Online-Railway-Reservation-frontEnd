@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import "./Signin-signup.css";
 import AuthContext from "../../store/auth-context";
-import service from "../../Services/service";
+import service from "../../Services/AdminService";
 
 const Signin = (props) => {
   const history = useNavigate();
@@ -34,39 +34,40 @@ const Signin = (props) => {
     // optional: Add validation
 
     setIsLoading(true);
-    const User = { username, password };
+    // const Admin = { username, password };
 
-    service
-      .getToken(User)
-      .then((res) => {
-        //  console.log(res.data.accessToken);
-        console.log(res.data);
-        setIsLoading(false);
-        if (res.status === 200) {
-          // console.log(res.data.accessToken);
-          // console.log(res.status);
-          return res.data;
-        } else {
-          return res.data.then((data) => {
-            console.log(data);
-            let errorMessage = "Authentication failed!";
-            // if (data && data.error && data.error.message) {
-            //   errorMessage = data.error.message;
-            // }
+    //  login = () => {
+    //   service
+    //     .getToken(Admin)
+    //     .then((res) => {
+    //       //  console.log(res.data.accessToken);
+    //       console.log(res.data);
+    //       setIsLoading(false);
+    //       if (res.status === 200) {
+    //         // console.log(res.data.accessToken);
+    //         // console.log(res.status);
+    //         return res.data;
+    //       } else {
+    //         return res.data.then((data) => {
+    //           console.log(data);
+    //           let errorMessage = "Authentication failed!";
+    //           // if (data && data.error && data.error.message) {
+    //           //   errorMessage = data.error.message;
+    //           // }
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        authCtx.login(data.accessToken);
-        authCtx.userIdData(data);
-        localStorage.setItem("role", data.roles.at(0));
-        history("/", { replace: true });
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    //           throw new Error(errorMessage);
+    //         });
+    //       }
+    //     })
+    //     .then((data) => {
+    //       authCtx.login(data.accessToken);
+    //       authCtx.userIdData(data);
+    //       history("/", { replace: true });
+    //     })
+    //     .catch((err) => {
+    //       alert(err.message);
+    //     });
+    // };
   };
 
   useEffect(() => {

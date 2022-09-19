@@ -9,5 +9,9 @@ class trainService {
   getTrainById(id) {
     return httpClient.get(`/trainSearch/getTrainById/${id}`);
   }
+
+  getAllTrain() {
+    return httpClient.get(`/trainSearch/allTrains`);
+  }
 }
 export default new trainService();
