@@ -13,5 +13,10 @@ class trainService {
   getAllTrain() {
     return httpClient.get(`/trainSearch/allTrains`);
   }
+
+
+  addTrain(data) {
+    return httpClient.post(`/trainSearch/saveTrain`,data);
+  }
 }
 export default new trainService();

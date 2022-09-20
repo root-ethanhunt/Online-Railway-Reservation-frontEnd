@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import AuthContext from "../../store/auth-context";
 
@@ -21,7 +20,7 @@ export const NavbarAdmin = (props) => {
         <Link className="active item" to="/">
           <h4>Home</h4>
         </Link>
-        <Link className="item" to="/addTrain">
+        <Link className="item" to="/add-train">
           <h4>Add Train</h4>
         </Link>
 

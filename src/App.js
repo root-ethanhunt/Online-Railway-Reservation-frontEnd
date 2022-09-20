@@ -31,6 +31,8 @@ import { PnrInfo } from "./components/SearchTrain/PnrSearchPages/PnrInfo";
 import SigninAdmin from "./components/Auth/SigninAdmin";
 import { NavbarAdmin } from "./components/Navbar/NavbarAdmin";
 import { AdminHome } from "./components/Admin/AdminHome";
+import { AddTrain } from "./components/Admin/AddTrain";
+import { UpdateTrain } from "./components/Admin/UpdateTrain";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -87,6 +89,27 @@ const App = () => {
             {!authCtx.isLoggedIn && (
               <Route path="/admin" element={<SigninAdmin />} />
             )}
+
+            <Route
+              path="/add-train"
+              element={
+                isUser === "ADMIN" ? (
+                  <AddTrain />
+                ) : (
+                  <Navigate replace to={"/signin"} />
+                )
+              }
+            />
+            <Route
+              path="/update-train"
+              element={
+                isUser === "ADMIN" ? (
+                  <UpdateTrain />
+                ) : (
+                  <Navigate replace to={"/signin"} />
+                )
+              }
+            />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
