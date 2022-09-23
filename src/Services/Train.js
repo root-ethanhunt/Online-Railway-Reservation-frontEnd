@@ -14,9 +14,12 @@ class trainService {
     return httpClient.get(`/trainSearch/allTrains`);
   }
 
+  deleteTrain(id) {
+    return httpClient.delete(`/trainSearch/delete/${id}`);
+  }
 
   addTrain(data) {
-    return httpClient.post(`/trainSearch/saveTrain`,data);
+    return httpClient.post(`/trainSearch/saveTrain`, data);
   }
 }
 export default new trainService();

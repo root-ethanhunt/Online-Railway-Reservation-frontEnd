@@ -1,12 +1,43 @@
 import React from "react";
 
 import { useEffect, useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import service from "../../Services/Train";
 import img from "../../assets/Vikash Kumar Photo.JPG";
 import { Button } from "semantic-ui-react";
 export const HomeSideComponent = (props) => {
+  const history = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isData, setIsData] = useState([]);
+  const [isDelete, setIsDelete] = useState("");
+
+  const deleteHandler = (data) => {
+    console.log(data);
+    service
+      .deleteTrain(data)
+      .then((res) => {
+        console.log(res.data);
+
+        setIsLoading(true);
+        if (res.status === 200) {
+          return res.data;
+        } else {
+          return res.data.then((data) => {
+            console.log(data);
+
+            // throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        history("/", { replace: true });
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    window.location.reload(false);
+  };
 
   const list = () =>
     service
@@ -26,7 +57,9 @@ export const HomeSideComponent = (props) => {
           });
         }
       })
-      .then((data) => {})
+      .then((data) => {
+        history("/", { replace: true });
+      })
       .catch((err) => {
         alert(err.message);
       });
@@ -56,7 +89,14 @@ export const HomeSideComponent = (props) => {
                   <button class="positive ui button">Update</button>
                 </td>
                 <td data-label="Job">
-                  <button class="negative ui button">Delete</button>
+                  <button
+                    class="negative ui button"
+                    onClick={() => {
+                      deleteHandler(trainData.train_id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
